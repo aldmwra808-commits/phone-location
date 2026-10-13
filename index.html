@@ -1,4 +1,3 @@
-# phone-location
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -10,26 +9,33 @@
 <h2>تحديد موقع الهاتف</h2>
 <button onclick="getLocation()">تحديد موقعي</button>
 <p id="result">اضغط على الزر لتحديد موقعك.</p>
+
 <script>
-functio 
-  n getLocation() {
-  const result = document.getElementById("result");
-  if (!navigator.geolocation) {
-    result.textContent = "المتصفح لا يدعم تحديد الموقع.";
-    return;
-  }
-  result.textContent = "جارٍ تحديد الموقع...";
-  navigator.geolocation.getCurrentPosition(
-    function(position) {
-      result.textContent =
-        "خط العرض: " + position.coords.latitude +
-        " | خط الطول: " + position.coords.longitude;
-    },
-    function(error) {
-      result.textContent = "تعذّر تحديد الموقع. تأكد من السماح للمتصفح باستخدام الموقع.";
-    },
-    {enableHighAccuracy: true, timeout: 15000}
-  );
+function getLocation() {
+    const result = document.getElementById("result");
+
+    if (!navigator.geolocation) {
+        result.textContent = "المتصفح لا يدعم تحديد الموقع.";
+        return;
+    }
+
+    result.textContent = "جارٍ تحديد الموقع...";
+
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+            result.textContent =
+                "خط العرض: " + position.coords.latitude +
+                " | خط الطول: " + position.coords.longitude;
+        },
+        function(error) {
+            result.textContent =
+                "تعذّر تحديد الموقع. تأكد من السماح للمتصفح باستخدام الموقع.";
+        },
+        {
+            enableHighAccuracy: true,
+            timeout: 15000
+        }
+    );
 }
 </script>
 </body>
